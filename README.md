@@ -2,6 +2,18 @@
 
 TeamTranslate is designed to help share you the translations from one Java project with other projects in your organisation.
 
+### Search Screen
+![Search Screen](https://drive.google.com/open?id=0B1HzExgXVRxtM0d2QWhMSno2MGs)
+
+### Sidebar Menu
+![Sidebar Menu](https://drive.google.com/drive/u/0/folders/0B1HzExgXVRxtenM0U1pPa1MxWEk)
+
+### Upload Screen
+![Upload Screen](https://drive.google.com/open?id=0B1HzExgXVRxtdU83TmF6eDhNTkk)
+
+### Input Screen
+![Input Screen](https://drive.google.com/open?id=0B1HzExgXVRxtdU83TmF6eDhNTkk)
+
 ## Getting Started
 
 ### Setup for team-translate-core 
