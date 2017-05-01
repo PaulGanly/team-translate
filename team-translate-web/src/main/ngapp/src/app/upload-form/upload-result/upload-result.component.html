@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="col s8">
+        <table>
+            <tbody>
+                <tr>
+                    <td><b>lpt-messages.properties</b> uploaded sucessfully.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>100 </b> messages found.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>89 </b> direct translations identified.</td>
+                    <td>
+                        <a class="btn table-btn waves-effect teal darken-2 waves-light" style="color:white !important;" name="action">
+                            Download Translations<i class="material-icons right">file_download</i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col s4"></div>
+</div>
+<br><br>
+<div class="row">
+    <h5>Unidentified translations</h5>
+</div>
+<table class="highlight striped">
+    <tbody>
+        <tr *ngFor="let uploadResult of uploadResults">
+            <td width="50%">{{uploadResult.toBeTranslated}}</td>
+            <td>
+                <a class="waves-effect waves-light" (click)="openInputModal(uploadResult)">
+                    Add Translation<i class=" material-icons right">speaker_notes</i>
+                </a>
+            </td>
+            <td>
+                <a class="waves-effect waves-light" (click)="openViewSimilarModal(uploadResult)">
+                    View Similar<i class="material-icons right">remove_red_eye</i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="input-modal" class="modal" materialize="modal" [materializeActions]="inputModalActions">
+    <div class="modal-content">
+        <h4>Add a translation</h4>
+        <div id="input-modal-input" class="row center">
+            <form id="input-modal-form" class="col s12">
+                <div class="row center">
+                    <div class="col s3"></div>
+                    <div class="input-field col s6">
+                        <textarea id="english-input" disabled placeholder="{{selectedResult.toBeTranslated}}" class="materialize-textarea height-adjust"></textarea>
+                        <label for="english-input">English Text</label>
+                    </div>
+                    <div class="col s3"></div>
+                </div>
+                <div class="row center">
+                    <div class="col s3"></div>
+                    <div class="input-field col s6">
+                        <textarea id="irish-input" class="materialize-textarea height-adjust"></textarea>
+                        <label for="irish-input">Irish Text</label>
+                    </div>
+                    <div class="col s3"></div>
+                </div>
+                <div class="row center">
+                    <div class="col s3"></div>
+                    <div class="input-field col s6">
+                        <textarea id="context-input" class="materialize-textarea height-adjust"></textarea>
+                        <label for="context-input">Context</label>
+                    </div>
+                    <div class="col s3"></div>
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect teal darken-2 waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a id="input-modal-close" (click)="closeInputModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
+
+<div id="view-similar-modal" class="modal" materialize="modal" [materializeActions]="viewSimilarModalActions">
+    <div class="modal-content">
+        <h5><b>Entered text: </b>{{selectedResult.toBeTranslated}}</h5>
+        <br><br>
+        <h5><b>Alternative translations</b></h5>
+        <table class="highlight striped centered">
+            <thead>
+                <tr>
+                    <th>Alternatives</th>
+                    <th>Match %</th>
+                    <th>Translation</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let closeMatch of selectedResult.closeMatches">
+                    <td>{{closeMatch.translatedFrom}}</td>
+                    <td>{{closeMatch.matchPercentage}}</td>
+                    <td>{{closeMatch.translatedTo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a id="view-similar-modal-close" (click)="closeViewSimilarModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>

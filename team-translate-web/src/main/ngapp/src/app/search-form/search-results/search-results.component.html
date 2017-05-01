@@ -1,0 +1,20 @@
+<div *ngIf="searchResult != null && searchResult.length > 0">
+    <table class="highlight striped centered">
+        <thead>
+            <tr>
+                <th>Match</th>
+                <th>Match %</th>
+                <th>Translation</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let result of searchResult">
+                <td>{{result.translatedFrom}}</td>
+                <td>{{result.matchPercentage}}</td>
+                <td>{{result.translatedTo}}</td>
+                <td><button class="btn waves-effect table-btn teal darken-2 waves-light" name="action">Copy Translation<i class="material-icons right">content_copy</i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

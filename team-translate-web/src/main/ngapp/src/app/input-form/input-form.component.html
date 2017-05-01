@@ -1,0 +1,31 @@
+<div class="row center">
+    <form [formGroup]="inputForm" materialize class="col s12" (ngSubmit)="doInput()">
+        <div class="row center">
+            <div class="col s3"></div>
+            <div class="input-field col s6">
+                <textarea formControlName="english" id="english-input" class="materialize-textarea height-adjust"></textarea>
+                <label for="english-input">English Text</label>
+            </div>
+            <div class="col s3"></div>
+        </div>
+        <div class="row center">
+            <div class="col s3"></div>
+            <div class="input-field col s6">
+                <textarea formControlName="irish" id="irish-input" class="materialize-textarea height-adjust"></textarea>
+                <label for="irish-input">Irish Text</label>
+            </div>
+            <div class="col s3"></div>
+        </div>
+        <div class="row center">
+            <div class="col s3"></div>
+            <div class="input-field col s6">
+                <textarea formControlName="context" id="context-input" class="materialize-textarea height-adjust"></textarea>
+                <label for="context-input">Context</label>
+            </div>
+            <div class="col s3"></div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect teal darken-2 waves-light" type="submit">Submit<i class="material-icons right">send</i></button>
+        </div>
+    </form>
+</div>
