@@ -9,7 +9,7 @@ TeamTranslate is designed to help share you the translations from one Java proje
 ![Sidebar Menu](https://drive.google.com/drive/u/0/folders/0B1HzExgXVRxtenM0U1pPa1MxWEk)
 
 ### Upload Screen
-![Upload Screen](https://drive.google.com/open?id=0B1HzExgXVRxtdU83TmF6eDhNTkk)
+![Upload Screen](https://photos.google.com/search/_tra_/photo/AF1QipOXYxfO3lGCKT4bQsRM38yq5Y3acUBdT6AjFmFQ)
 
 ### Input Screen
 ![Input Screen](https://drive.google.com/open?id=0B1HzExgXVRxtdU83TmF6eDhNTkk)
