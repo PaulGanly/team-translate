@@ -3,16 +3,16 @@
 TeamTranslate is designed to help share you the translations from one Java project with other projects in your organisation.
 
 ### Search Screen
-![Search Screen](https://drive.google.com/open?id=0B1HzExgXVRxtM0d2QWhMSno2MGs)
+![Search Screen](https://github.com/PaulGanly/team-translate/blob/master/Screenshots/frontpage.png)
 
 ### Sidebar Menu
-![Sidebar Menu](https://drive.google.com/drive/u/0/folders/0B1HzExgXVRxtenM0U1pPa1MxWEk)
+![Sidebar Menu](https://github.com/PaulGanly/team-translate/blob/master/Screenshots/sidebar.png)
 
 ### Upload Screen
-![Upload Screen](https://photos.google.com/search/_tra_/photo/AF1QipOXYxfO3lGCKT4bQsRM38yq5Y3acUBdT6AjFmFQ)
+![Upload Screen](https://github.com/PaulGanly/team-translate/blob/master/Screenshots/upload.png)
 
 ### Input Screen
-![Input Screen](https://drive.google.com/open?id=0B1HzExgXVRxtdU83TmF6eDhNTkk)
+![Input Screen](https://github.com/PaulGanly/team-translate/blob/master/Screenshots/input.png)
 
 ## Getting Started
 
