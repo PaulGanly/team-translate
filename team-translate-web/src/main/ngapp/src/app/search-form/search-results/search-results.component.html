@@ -10,11 +10,16 @@
         </thead>
         <tbody>
             <tr *ngFor="let result of searchResult">
-                <td>{{result.translatedFrom}}</td>
-                <td>{{result.matchPercentage}}</td>
-                <td>{{result.translatedTo}}</td>
+                <td>{{result.phrase}}</td>
+                <td>{{result.percentageMatch}}</td>
+                <td>{{result.translation}}</td>
                 <td><button class="btn waves-effect table-btn teal darken-2 waves-light" name="action">Copy Translation<i class="material-icons right">content_copy</i></button></td>
             </tr>
         </tbody>
     </table>
+</div>
+<div *ngIf="searchResult != null && searchResult.length == 0">
+    <div class="row center">
+        <h6>Sorry, we couldn't find any results for this phrase</h6>
+    </div>
 </div>

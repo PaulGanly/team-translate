@@ -13,8 +13,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
-
 @EntityScan
 @Entity
 @Table(name = "translations")
@@ -50,7 +48,6 @@ public class Translation {
 		return this;
 	}
 
-	@ApiModelProperty(value = "")
 	public String getEnglish() {
 		return english;
 	}
@@ -64,7 +61,6 @@ public class Translation {
 		return this;
 	}
 
-	@ApiModelProperty(value = "")
 	public String getIrish() {
 		return irish;
 	}
@@ -78,7 +74,6 @@ public class Translation {
 		return this;
 	}
 
-	@ApiModelProperty(value = "")
 	public String getContext() {
 		return context;
 	}

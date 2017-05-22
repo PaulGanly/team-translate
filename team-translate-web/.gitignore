@@ -1,0 +1,6 @@
+/.classpath
+/.project
+/.settings/
+/target/
+/src/main/ngapp/min/
+/src/main/ngapp/node_modules/

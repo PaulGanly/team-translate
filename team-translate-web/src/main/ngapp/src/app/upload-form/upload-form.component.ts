@@ -20,12 +20,12 @@ export class UploadFormComponent implements OnInit {
   }
 
   public uploadForm = this.fb.group({
-    uploadLanguage: ["", Validators.required],
-    fileToTranslate: ["", Validators.required]
+    uploadLanguage: ['', Validators.required],
+    fileToTranslate: ['', Validators.required]
   });
 
   doUpload() {
-    console.log("In do upload");
+    console.log('In do upload');
     this.uploadService.uploadFile(this.uploadForm.controls.uploadLanguage.value, this.uploadForm.controls.fileToTranslate).subscribe();
   };
 

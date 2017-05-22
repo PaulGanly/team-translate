@@ -12,7 +12,7 @@ import * as models from '../model/models';
   providers: [SearchService]
 })
 export class SearchFormComponent implements OnInit {
-  searchResult: Observable<models.Match[]>;
+  searchResult: models.Match[];
 
   public searchForm = this.fb.group({
     searchLanguage: ["", Validators.required],
@@ -24,7 +24,8 @@ export class SearchFormComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
-    this.searchService.search(this.searchForm.controls.searchLanguage.value, this.searchForm.controls.searchTerm.value).subscribe();
+    this.searchService.search(this.searchForm.controls.searchLanguage.value, this.searchForm.controls.searchTerm.value)
+    .subscribe(result => this.searchResult = result);
   };
 
 }

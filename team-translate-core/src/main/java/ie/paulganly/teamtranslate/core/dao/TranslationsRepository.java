@@ -1,14 +1,13 @@
 package ie.paulganly.teamtranslate.core.dao;
 
 import org.springframework.data.repository.CrudRepository;
-
-import ie.paulganly.teamtranslate.core.model.Match;
 import ie.paulganly.teamtranslate.core.model.Translation;
+import java.util.List;
 
 public interface TranslationsRepository extends CrudRepository<Translation, Long> {
 
-	Match findByEnglish(String english);
+	List<Translation> findTop5ByEnglishContaining(String english);
 
-	Match findByIrish(String irish);
+	List<Translation> findTop5ByIrishContaining(String irish);
 
 }
