@@ -15,8 +15,8 @@ export class SearchFormComponent implements OnInit {
   searchResult: models.Match[];
 
   public searchForm = this.fb.group({
-    searchLanguage: ["", Validators.required],
-    searchTerm: ["", Validators.required]
+    searchLanguage: ['ENGLISH', Validators.required],
+    searchTerm: ['', Validators.required]
   });
 
   constructor(private searchService: SearchService, public fb: FormBuilder) { }

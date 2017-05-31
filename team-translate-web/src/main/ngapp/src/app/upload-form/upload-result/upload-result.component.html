@@ -3,17 +3,19 @@
         <table>
             <tbody>
                 <tr>
-                    <td><b>lpt-messages.properties</b> uploaded sucessfully.</td>
+                    <td><b>{{uploadService.uploadResult.fileName}}</b> uploaded sucessfully.</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td><b>100 </b> messages found.</td>
+                    <td><b>{{uploadService.uploadResult.totalPhrases}}</b> messages found.</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td><b>89 </b> direct translations identified.</td>
+                    <td><b>{{uploadService.uploadResult.numberOfExactMatches}}</b> direct translations identified.</td>
                     <td>
-                        <a class="btn table-btn waves-effect teal darken-2 waves-light" style="color:white !important;" name="action">
+                        <a class="btn table-btn waves-effect teal darken-2 waves-light"
+                            style="color:white !important;"
+                            (click)="downloadTranslatedFile()">
                             Download Translations<i class="material-icons right">file_download</i>
                         </a>
                     </td>
@@ -25,19 +27,34 @@
 </div>
 <br><br>
 <div class="row">
-    <h5>Unidentified translations</h5>
+    <div class="col s6">
+        <h5>Unidentified translations</h5>
+    </div>
+    <div class="col s6">
+        <a class="btn table-btn waves-effect teal darken-2 waves-light"
+            style="color:white !important;"
+            (click)="mailSelectedPhrasesForTranslation($event)">
+            Request Translations<i class="material-icons right">send</i>
+        </a>
+    </div>
 </div>
 <table class="highlight striped">
+    <thead>
+        <tr>
+            <th><input type="checkbox" id="selectAll" name="selectAll" [value]="allSelected" [(ngModel)]="allSelected" (change)="$event.target.checked ? selectAll(true) : selectAll(false)">
+                <label for="selectAll">Select all</label></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
     <tbody>
-        <tr *ngFor="let uploadResult of uploadResults">
-            <td width="50%">{{uploadResult.toBeTranslated}}</td>
-            <td>
-                <a class="waves-effect waves-light" (click)="openInputModal(uploadResult)">
-                    Add Translation<i class=" material-icons right">speaker_notes</i>
-                </a>
+        <tr *ngFor="let unmatchedTableRow of unmatchedTableRows; let i = index">
+            <td><input type="checkbox" id="{{'select-' + i}}" name="isSelectedForEmail" [value]="unmatchedTableRow.isSelectedForEmail" [(ngModel)]="unmatchedTableRow.isSelectedForEmail" (change)="$event.target.checked ? unmatchedTableRow.isSelectedForEmail = true : unmatchedTableRow.isSelectedForEmail = false">
+                <label for="{{'select-' + i}}"> </label>
             </td>
+            <td width="50%"><input type="hidden" ngModel name="phrase" [value]="unmatchedPhrase">{{unmatchedTableRow.phrase}}</td>
             <td>
-                <a class="waves-effect waves-light" (click)="openViewSimilarModal(uploadResult)">
+                <a class="waves-effect waves-light" (click)="findSimilarPhrases(unmatchedTableRow.phrase)">
                     View Similar<i class="material-icons right">remove_red_eye</i>
                 </a>
             </td>
@@ -45,70 +62,42 @@
     </tbody>
 </table>
 
-<div id="input-modal" class="modal" materialize="modal" [materializeActions]="inputModalActions">
-    <div class="modal-content">
-        <h4>Add a translation</h4>
-        <div id="input-modal-input" class="row center">
-            <form id="input-modal-form" class="col s12">
+<div *ngIf="selectedResult != null">
+    <div id="view-similar-modal" class="modal" materialize="modal" [materializeActions]="viewSimilarModalActions">
+        <div class="modal-content">
+            <h5><b>Entered text: </b>{{selectedResult.phrase}}</h5>
+            <br><br>
+            <h5><b>Alternative translations:</b></h5>
+            <div *ngIf="selectedResult.closeMatches.length == 0">
                 <div class="row center">
-                    <div class="col s3"></div>
-                    <div class="input-field col s6">
-                        <textarea id="english-input" disabled placeholder="{{selectedResult.toBeTranslated}}" class="materialize-textarea height-adjust"></textarea>
-                        <label for="english-input">English Text</label>
+                    <div class="icon-block">
+                    <h2 class="center teal-text text-darken-2"><i class="medium material-icons">cancel</i></h2>
+                    <h5 class="center">No similar phrases found</h5>
+                    <p class="light">Sorry, we couldn't find any close matches for this phrase</p>
                     </div>
-                    <div class="col s3"></div>
-                </div>
-                <div class="row center">
-                    <div class="col s3"></div>
-                    <div class="input-field col s6">
-                        <textarea id="irish-input" class="materialize-textarea height-adjust"></textarea>
-                        <label for="irish-input">Irish Text</label>
-                    </div>
-                    <div class="col s3"></div>
-                </div>
-                <div class="row center">
-                    <div class="col s3"></div>
-                    <div class="input-field col s6">
-                        <textarea id="context-input" class="materialize-textarea height-adjust"></textarea>
-                        <label for="context-input">Context</label>
-                    </div>
-                    <div class="col s3"></div>
-                </div>
-                <div class="row">
-                    <button class="btn waves-effect teal darken-2 waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
-                </div>
-            </form>
+                </div> 
+            </div>
+            <div *ngIf="selectedResult.closeMatches.length > 0">
+                <table class="highlight striped centered">
+                    <thead>
+                        <tr>
+                            <th>Alternatives</th>
+                            <th>Match %</th>
+                            <th>Translation</th>
+                        </tr>
+                    </thead> 
+                    <tbody>
+                        <tr *ngFor="let closeMatch of selectedResult.closeMatches">
+                            <td>{{closeMatch.phrase}}</td>
+                            <td>{{closeMatch.percentageMatch}}</td>
+                            <td>{{closeMatch.translation}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <a id="input-modal-close" (click)="closeInputModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-    </div>
-</div>
-
-<div id="view-similar-modal" class="modal" materialize="modal" [materializeActions]="viewSimilarModalActions">
-    <div class="modal-content">
-        <h5><b>Entered text: </b>{{selectedResult.toBeTranslated}}</h5>
-        <br><br>
-        <h5><b>Alternative translations</b></h5>
-        <table class="highlight striped centered">
-            <thead>
-                <tr>
-                    <th>Alternatives</th>
-                    <th>Match %</th>
-                    <th>Translation</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let closeMatch of selectedResult.closeMatches">
-                    <td>{{closeMatch.translatedFrom}}</td>
-                    <td>{{closeMatch.matchPercentage}}</td>
-                    <td>{{closeMatch.translatedTo}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="modal-footer">
-        <a id="view-similar-modal-close" (click)="closeViewSimilarModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        <div class="modal-footer">
+            <a id="view-similar-modal-close" (click)="closeViewSimilarModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
     </div>
 </div>

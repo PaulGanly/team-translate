@@ -17,10 +17,10 @@ export class SearchService {
 
   /**
    * Search for the translation of the provided phrase.
-   * @param language 
-   * @param phrase 
+   * @param language
+   * @param phrase
    */
-  search(language: string, phrase: string) { 
+  search(language: string, phrase: string) {
     this.foundMatches = this.findTranslationsForPhrase(phrase, language);
     return this.foundMatches;
   }
@@ -32,7 +32,7 @@ export class SearchService {
    * @param objB source object
    */
   private extendObj<T1, T2 extends T1>(objA: T2, objB: T2): T1 | T2 {
-    for (let key in objB) {
+    for (const key in objB) {
       if (objB.hasOwnProperty(key)) {
         objA[key] = objB[key];
       }
@@ -66,8 +66,8 @@ export class SearchService {
   public findTranslationsForPhraseWithHttpInfo(phrase: string, language: string, extraHttpRequestParams?: any): Observable<Response> {
     const path = this.basePath + `translation/find`;
 
-    let queryParameters = new URLSearchParams();
-    let headers = new Headers(this.defaultHeaders.toJSON());
+    const queryParameters = new URLSearchParams();
+    const headers = new Headers(this.defaultHeaders.toJSON());
 
     if (phrase === null || phrase === undefined) {
       throw new Error('Required parameter phrase was null or undefined when calling findTranslationsForPhrase.');
@@ -83,10 +83,10 @@ export class SearchService {
       queryParameters.set('language', <any>language);
     }
 
-    let consumes: string[] = [
+    const consumes: string[] = [
     ];
 
-    let produces: string[] = [
+    const produces: string[] = [
       'application/json'
     ];
 

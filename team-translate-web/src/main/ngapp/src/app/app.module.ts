@@ -17,6 +17,7 @@ import { SearchService } from './search-form/search.service';
 import { InputService } from './input-form/input.service';
 import { UploadService } from './upload-form/upload.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InputConfirmComponent } from './input-form/input-confirm/input-confirm.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchFormComponent,
     SearchResultsComponent,
     UploadFormComponent,
-    UploadResultComponent
+    UploadResultComponent,
+    InputConfirmComponent
   ],
   imports: [
     BrowserModule,

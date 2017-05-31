@@ -1,5 +1,5 @@
 <div class="row center">
-    <form [formGroup]="uploadForm" materialize class="col s12" (ngSubmit)="doUpload()">
+    <form [formGroup]="uploadForm" materialize class="col s12" (ngSubmit)="doUpload($event)">
         <div class="col s4">
             Translate file from:
         </div>
@@ -16,7 +16,7 @@
             <div class="btn table-btn waves-effect waves-light teal darken-2">
                 <i class="material-icons right">present_to_all</i>
                 <span>Choose File to Upload</span>
-                <input formControlName="fileToTranslate" type="file">
+                <input class="fileInput" formControlName="fileToTranslate" type="file">
             </div>
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">

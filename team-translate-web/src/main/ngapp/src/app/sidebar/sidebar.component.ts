@@ -9,7 +9,7 @@ import {MaterializeDirective} from 'angular2-materialize';
 })
 export class SidebarComponent implements OnInit {
   userName = 'Paul Ganly';
-  userEmail = 'paulganly85@gmail.com';
+  userEmail = 'pganly00@revenue.ie';
 
   constructor() {
   }

@@ -1,10 +1,12 @@
 import * as models from './models';
 
 export interface UploadResponse {
-    propertiesFile?: string;
+    fileName?: string;
 
-    matchesFound?: number;
+    totalPhrases?: number;
 
-    unmatchedPhrases?: Array<models.UnmatchedArray>;
+    numberOfExactMatches?: number;
+
+    unmatchedPhrases?: Array<String>;
 
 }

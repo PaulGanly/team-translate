@@ -20,7 +20,7 @@ export class InputService {
      * @param objB source object
      */
   private extendObj<T1, T2 extends T1>(objA: T2, objB: T2): T1 | T2 {
-    for (let key in objB) {
+    for (const key in objB) {
       if (objB.hasOwnProperty(key)) {
         objA[key] = objB[key];
       }
@@ -40,11 +40,9 @@ export class InputService {
     return this.inputTranslationWithFormWithHttpInfo(english, irish, context, extraHttpRequestParams)
       .map((response: Response) => {
         if (response.status === 204) {
-          console.log(response.status);
           return undefined;
         } else {
-          console.log(response.json());
-          return response.json();
+          return response;
         }
       });
   }
@@ -56,12 +54,14 @@ export class InputService {
    * @param irish Phrase in Irish
    * @param context Phrase Context
    */
-  public inputTranslationWithFormWithHttpInfo(english: string, irish: string, context: string, extraHttpRequestParams?: any): Observable<Response> {
+  public inputTranslationWithFormWithHttpInfo(english: string,
+                                              irish: string,
+                                              context: string, extraHttpRequestParams?: any): Observable<Response> {
     const path = this.basePath + `translation/input`;
 
-    let queryParameters = new URLSearchParams();
-    let headers = new Headers(this.defaultHeaders.toJSON());
-    let formParams = new URLSearchParams();
+    const queryParameters = new URLSearchParams();
+    const headers = new Headers(this.defaultHeaders.toJSON());
+    const formParams = new URLSearchParams();
 
     console.log('Input a new translation with Http' + english + ' ' + irish + ' ' + context + ' ' + path);
 
@@ -77,11 +77,11 @@ export class InputService {
       throw new Error('Required parameter context was null or undefined when calling inputTranslationWithForm.');
     }
 
-    let consumes: string[] = [
+    const consumes: string[] = [
       'application/x-www-form-urlencoded'
     ];
 
-    let produces: string[] = [
+    const produces: string[] = [
       'application/json'
     ];
 

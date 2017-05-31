@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { InputFormComponent } from './input-form/input-form.component';
-import { InputConfirmComponent } from './input-form/input-confirm/input-confirm.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchResultsComponent } from './search-form/search-results/search-results.component';
 import { UploadFormComponent } from './upload-form/upload-form.component';
@@ -14,8 +13,7 @@ const routes: Routes = [
   { path: 'search',  component: SearchFormComponent },
   { path: 'input', component: InputFormComponent },
   { path: 'upload',     component: UploadFormComponent },
-  { path: 'uploadresults', component: UploadResultComponent },
-  { path: 'confirminput', component: InputConfirmComponent }
+  { path: 'uploadresults', component: UploadResultComponent }
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

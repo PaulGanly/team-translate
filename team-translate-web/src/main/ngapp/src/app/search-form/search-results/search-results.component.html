@@ -20,6 +20,10 @@
 </div>
 <div *ngIf="searchResult != null && searchResult.length == 0">
     <div class="row center">
-        <h6>Sorry, we couldn't find any results for this phrase</h6>
+        <div class="icon-block">
+        <h2 class="center teal-text text-darken-2"><i class="medium material-icons">cancel</i></h2>
+        <h5 class="center">No results found</h5>
+        <p class="light">Sorry, we couldn't find any results for this phrase</p>
+        </div>
     </div>
 </div>

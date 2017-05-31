@@ -1,5 +1,4 @@
 package ie.paulganly.teamtranslate.core.model;
-
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -84,15 +83,15 @@ public class Translation {
 
 	@Override
 	public boolean equals(java.lang.Object o) {
-		if (this == o) {
+		if(this == o){
 			return true;
 		}
-		if (o == null || getClass() != o.getClass()) {
+		if(o == null || getClass() != o.getClass()){
 			return false;
 		}
 		Translation translation = (Translation) o;
 		return Objects.equals(this.english, translation.english) && Objects.equals(this.irish, translation.irish)
-				&& Objects.equals(this.context, translation.context);
+		    && Objects.equals(this.context, translation.context);
 	}
 
 	@Override
@@ -113,7 +112,7 @@ public class Translation {
 	}
 
 	private String toIndentedString(java.lang.Object o) {
-		if (o == null) {
+		if(o == null){
 			return "null";
 		}
 		return o.toString().replace("\n", "\n    ");
