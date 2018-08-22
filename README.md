@@ -147,7 +147,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* **Paul Ganly** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Paul Ganly** - *Initial work* - [https://github.com/paulganly/github-link](https://github.com/paulganly/)
 
 ## License
 
